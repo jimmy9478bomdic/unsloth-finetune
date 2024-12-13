@@ -68,7 +68,7 @@ model = FastLanguageModel.get_peft_model(
 )
 
 print("Loading dataset")
-dataset_path = "test_dataset.json"
+dataset_path = "dataset/test_dataset.json"
 dataset = load_dataset("json", data_files=dataset_path, split="train")
 
 custom_prompt = """Source: {}

@@ -65,7 +65,7 @@ def upload_to_huggingface(dataset, repo_id):
     dataset_dict.push_to_hub(repo_id, token=token)
     verbose_print(f"Dataset uploaded to Hugging Face with repository ID {repo_id}")
 
-output_file = 'test_dataset.json'
+output_file = 'dataset/test_dataset.json'
 repo_id = 'jimmy9478/test_dataset'
 
 verbose_print("Starting dataset creation process")
