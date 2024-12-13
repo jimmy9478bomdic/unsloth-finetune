@@ -23,7 +23,7 @@ def create_dataset():
     # Scrape GitHub repository
 
     markdown_files = [
-        "./ijms-25-00574-v2/ijms-25-00574-v2.md"
+        "./docs/md/ijms-25-00574-v2/ijms-25-00574-v2.md"
         ]
     for md_file in markdown_files:
         sections = parse_markdown(md_file)

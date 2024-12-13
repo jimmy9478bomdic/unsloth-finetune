@@ -113,7 +113,7 @@ trainer = SFTTrainer(
         weight_decay = 0.01,
         lr_scheduler_type = "linear",
         seed = 3407,
-        output_dir = "outputs",
+        output_dir = "output",
         report_to = "none", # Use this for WandB etc
     ),
 )
