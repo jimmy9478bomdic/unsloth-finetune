@@ -83,7 +83,14 @@ The things you need before installing the software.
 
 * max_seq_length: 每個模型都有不同的最大長度，比喻在閱讀教材時，每次最多讀幾個字(最大 token 數量)。
 * model_name: 模型名稱，可以選擇不同的模型，這裡選用`unsloth/gemma-2-9b`模型。
-* load_in_4bit: 窮人用的。有錢人都用`16bit`，這裡選用`4bit`模型，可以加快下載速度，並且避免`OOMs`。
+* load_in_4bit: 
+    - 4-bit 模型透過量化技術，顯著降低了儲存和計算資源的需求，適合資源受限的應用場景。然而，這可能會在某些情況下影響模型的準確性。選擇使用 4-bit 還是 16-bit 模型，應根據具體應用需求和可用資源進行權衡。
+    - 16-bit 模型： 適用於對準確性要求較高的場景，且有足夠計算資源的環境。
+    - 4-bit 模型： 適用於資源受限的環境，如邊緣設備或需要快速推理的場景。透過 4-bit 量化，可在單個 48GB 的 GPU 上微調 65B 參數的模型，同時保留 16-bit 微調的性能。
+
+* 模型名稱(有沒有包含it):
+    - unsloth/gemma-2-27b-it-bnb-4bit 可能代表该模型专注于信息技术领域的数据集
+    - unsloth/gemma-2-27b-bnb-4bit 通用版本，未针对特定领域进行微调
 
 ```python
 max_seq_length = 2048  # Choose any! We auto support RoPE Scaling internally! # 
@@ -117,7 +124,11 @@ model, tokenizer = FastLanguageModel.from_pretrained(
 ```
 
 * target_modules: 模型的哪個部分要進行訓練，可以是模型的一部分，也可以是整個模型。這參數設定好可以讓模型更有針對性，也更加高效。
-* lora_alpha: 設定的越大`Lora`影響就會越大，會影響模型的原始性能要做平衡拿捏。
+    - `q_proj`、`k_proj`、`v_proj`、`o_proj`：對應注意力機制中的查詢（Query）、鍵（Key）、值（Value）和輸出投影層。
+    - `gate_proj`：在某些模型中，用於門控機制的投影層。
+    - `up_proj`、`down_proj`：前饋神經網路中的上採樣和下採樣投影層。
+* lora_alpha: 設定的越大`Lora`影響就會越大，會影響模型的原始性能要做平衡拿捏。設定為與秩（r）相等或其倍數。例如，若 r 設定為 16，則 lora_alpha 可設為 16 或 32。這樣的設定有助於在引入新特性的同時，避免對原始模型造成過大的擾動，從而防止過度擾動或過擬合。 
+
 * lora_dropout: 訓練過程中隨機比例丟棄，可以避免過度擬合。
 ```python
 print("Loading Laura")
