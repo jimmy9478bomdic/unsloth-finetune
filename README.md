@@ -24,14 +24,29 @@ The things you need before installing the software.
 
 用[uv](https://github.com/astral-sh/uv)建立虛擬環境
 
-```bash
-$ pip install uv #安裝uv
-$ uv python install 3.10 3.11 3.12 # 準備環境
-$ uv venv --python 3.11 # 建立虛擬環境
-$ source .venv/bin/activate # 啟動虛擬環境 
-$ uv pip install marker-pdf # 安裝marker
-$ uv pip sync requirements.txt # 安裝其他套件
-```
+1. 第一次使用專案
+
+    ```bash
+    $ pip install uv #安裝uv
+    $ uv python install 3.10 3.11 3.12 # 準備環境
+    $ uv venv --python 3.11 # 建立虛擬環境
+    $ source .venv/bin/activate # 啟動虛擬環境 
+    $ uv pip install marker-pdf # 安裝marker
+    $ uv pip sync requirements.txt # 安裝其他套件
+    ```
+
+2. 重新啟動專案
+
+    ```bash
+    $ source .venv/bin/activate # 啟動虛擬環境
+    $ deactivate # 關閉虛擬環境
+    ```
+
+- 如有新增安裝套件
+
+    ```bash
+    $ uv pip install -r requirements.txt
+    ```
 
 ## Usage
 
@@ -52,6 +67,12 @@ $ uv pip sync requirements.txt # 安裝其他套件
 
     ```bash
     $ uv run 02_Fine_Tuning.py
+    ```
+
+4. 使用finetune後的模型
+
+    ```bash
+    $ uv run 03_using_the_mode.py
     ```
 
 ## Deployment
