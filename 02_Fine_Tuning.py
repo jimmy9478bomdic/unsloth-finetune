@@ -50,7 +50,7 @@ model, tokenizer = FastLanguageModel.from_pretrained(
     max_seq_length=max_seq_length,
     dtype=dtype,
     load_in_4bit=load_in_4bit,
-    token="token"
+    # token = "hf_...", # use one if using gated models like meta-llama/Llama-2-7b-hf
 )
 
 print("Loading Laura")
