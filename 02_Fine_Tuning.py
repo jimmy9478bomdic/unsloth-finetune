@@ -123,5 +123,6 @@ print_memory_stats("Before Training")
 trainer_stats = trainer.train(resume_from_checkpoint=False)
 print_memory_stats("After Training")
 
+# 把finetune後的模型保存到lora_model資料夾
 model.save_pretrained("lora_model")
 tokenizer.save_pretrained("lora_model")
